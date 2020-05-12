@@ -12,6 +12,8 @@
         <RadioButton x:Name="autostart_no" Content="No" HorizontalAlignment="Left" Margin="161,32,0,0" VerticalAlignment="Top" Checked="autostart_no_Checked"/>
         <Button x:Name="Block" Content="Block Windows Update" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="152" Click="Block_Click"/>
         <Button x:Name="unBlock" Content="unBlock Windows Update" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="152" Click="unBlock_Click"/>
+        <Label Content="Refresh time(minutes)" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="131"/>
+        <TextBox x:Name="time" HorizontalAlignment="Left" Height="26" Margin="146,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" PreviewTextInput="time_PreviewTextInput" MaxLength="2" PreviewKeyUp="time_PreviewKeyUp"/>
 
     </Grid>
 </Window>

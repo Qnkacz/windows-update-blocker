@@ -1,0 +1,17 @@
+﻿<Window x:Class="windows_update_blocker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:windows_update_blocker"
+        mc:Ignorable="d"
+        Title="Windows Update blocker" Height="184" Width="237">
+    <Grid>
+        <Label Content="Do you want to autostart&#xD;&#xA;this program?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="131"/>
+        <RadioButton x:Name="autostart_yes" Content="Yes" HorizontalAlignment="Left" Margin="161,17,0,0" VerticalAlignment="Top" Checked="autostart_yes_Checked"/>
+        <RadioButton x:Name="autostart_no" Content="No" HorizontalAlignment="Left" Margin="161,32,0,0" VerticalAlignment="Top" Checked="autostart_no_Checked"/>
+        <Button x:Name="Block" Content="Block Windows Update" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="152" Click="Block_Click"/>
+        <Button x:Name="unBlock" Content="unBlock Windows Update" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="152" Click="unBlock_Click"/>
+
+    </Grid>
+</Window>

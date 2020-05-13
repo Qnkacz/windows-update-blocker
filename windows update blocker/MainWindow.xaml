@@ -17,6 +17,7 @@
         <Button x:Name="unBlock" Content="unBlock Windows Update" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="152" Click="unBlock_Click" Background="#FFBB82FC" Foreground="#FFF1F1F1"/>
         <Label Content="Refresh time(minutes)" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="131" Foreground="#FFF1F1F1"/>
         <TextBox x:Name="time" HorizontalAlignment="Left" Height="26" Margin="166,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" PreviewTextInput="time_PreviewTextInput" MaxLength="2" PreviewKeyUp="time_PreviewKeyUp" Background="#FFBB86FC" Foreground="#FFF1F1F1"/>
+        <Button Content="About&#xD;&#xA;Creator" HorizontalAlignment="Left" Margin="180,89,0,0" VerticalAlignment="Top" Width="74" Height="45" Background="#FFBB82FC" Foreground="White" Click="Button_Click"/>
 
     </Grid>
 </Window>

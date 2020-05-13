@@ -147,5 +147,10 @@ namespace windows_update_blocker
             this.Hide();
             base.OnClosing(e);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Creator: Bartosz Wąsik \n mail: Wasik.Bartosz@outlook.com \n currently searching for apprenticeships");
+        }
     }
 }

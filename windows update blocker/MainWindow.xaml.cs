@@ -25,9 +25,18 @@ namespace windows_update_blocker
         System.Windows.Forms.ContextMenu contextmenu = new System.Windows.Forms.ContextMenu();
         private void SetStartup(bool mode)
         {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", mode);
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            rk.SetValue("Windows Update blocker", Process.GetCurrentProcess().MainModule.FileName.ToString());
+            switch(mode)
+            {
+                case true:
+                    rk.SetValue("Windows Update blocker", Process.GetCurrentProcess().MainModule.FileName.ToString());
+                    break;
+                case false:
+                    rk.SetValue("Windows Update blocker", Process.GetCurrentProcess().MainModule.FileName.ToString()+"chuj");
+                    break;
+            }
+            
         }
         public MainWindow()
         {

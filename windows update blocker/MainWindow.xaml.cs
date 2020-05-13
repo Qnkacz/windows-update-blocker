@@ -22,6 +22,7 @@ namespace windows_update_blocker
         private static readonly Regex _regex = new Regex("[^0-9]");
         DispatcherTimer _DP = new DispatcherTimer();
         System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
+        System.Windows.Forms.ContextMenu contextmenu = new System.Windows.Forms.ContextMenu();
         private void SetStartup(bool mode)
         {
             RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", mode);
@@ -148,12 +149,19 @@ namespace windows_update_blocker
             icon.Icon = new System.Drawing.Icon("icon.ico");
             icon.Visible = true;
             icon.MouseClick += new System.Windows.Forms.MouseEventHandler(icon_Click);
-            icon.ShowBalloonTip(500, "I'm in the system tray if you need me"," just click", System.Windows.Forms.ToolTipIcon.Info);
+            icon.ShowBalloonTip(500, "I'm in the system tray if you need me"," just click", System.Windows.Forms.ToolTipIcon.Info); //this is just giving it to the system tray
+
+            //now we do the rightclick context menu
+            contextmenu.MenuItems.Add("close the program", new EventHandler(Close));
+            icon.ContextMenu = contextmenu;
             e.Cancel = true;
             this.Hide();
             base.OnClosing(e);
         }
-
+        private void Close(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
         private void icon_Click(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             this.Show();

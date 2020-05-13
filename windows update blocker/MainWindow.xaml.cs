@@ -2,24 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Management;
 using System.ServiceProcess;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
+using System.Windows.Threading;
+using System.Windows.Controls;
 
 namespace windows_update_blocker
 {
@@ -31,8 +20,7 @@ namespace windows_update_blocker
         ServiceController[] scServices;
         ServiceController wu = null;
         private static readonly Regex _regex = new Regex("[^0-9]");
-        public bool shouldloop=false;
-        System.Timers.Timer timer = null;
+        DispatcherTimer _DP = new DispatcherTimer();
         private void SetStartup(bool mode)
         {
             RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", mode);
@@ -78,15 +66,33 @@ namespace windows_update_blocker
 
         private void Block_Click(object sender, RoutedEventArgs e)
         {
-            shouldloop = true;
             ChangeStatusOfService(false);
-            loopBlock();
+            if(time.Text!=null)
+            {
+                _DP.Interval = new TimeSpan(0, Int32.Parse(time.Text), 0);
+                _DP.Tick += new EventHandler(loopBlock);
+                _DP.Start();
+            }
+            time.IsEnabled = false;
+            Button thisb = sender as Button;
+            thisb.IsEnabled = false;
+            unBlock.IsEnabled = true;
+        }
+
+        private void loopBlock(object sender, EventArgs e)
+        {
+            MessageBox.Show("started");
+            ChangeStatusOfService(false);
         }
 
         private void unBlock_Click(object sender, RoutedEventArgs e)
         {
-            shouldloop = false;
             ChangeStatusOfService(true);
+            _DP.Stop();
+            time.IsEnabled = true;
+            Button thisb = sender as Button;
+            thisb.IsEnabled = false;
+            Block.IsEnabled = true;
         }
         private void ChangeStatusOfService(bool status)
         {
@@ -128,17 +134,6 @@ namespace windows_update_blocker
                 time.Text = time.Text.Substring(0, time.Text.Length - 1);
             }
         }
-        private void loopBlock()
-        {
-            if(time.Text!=null)
-            {
-                while (shouldloop == true)
-                {
-                    Thread.Sleep(Int32.Parse(time.Text) * 60 * 1000);
-                    ChangeStatusOfService(false);
-                }
-            }
-        }
 
         protected override void OnStateChanged(EventArgs e)
         {
@@ -148,12 +143,8 @@ namespace windows_update_blocker
         }
         protected override void OnClosing(CancelEventArgs e)
         {
-            // setting cancel to true will cancel the close request
-            // so the application is not closed
             e.Cancel = true;
-
             this.Hide();
-
             base.OnClosing(e);
         }
     }

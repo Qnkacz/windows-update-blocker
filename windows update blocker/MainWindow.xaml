@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:windows_update_blocker"
         mc:Ignorable="d"
-        Title="Windows Update blocker" Height="184" Width="237">
-    <Grid>
-        <Label Content="Do you want to autostart&#xD;&#xA;this program?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="131"/>
-        <RadioButton x:Name="autostart_yes" Content="Yes" HorizontalAlignment="Left" Margin="161,17,0,0" VerticalAlignment="Top" Checked="autostart_yes_Checked"/>
-        <RadioButton x:Name="autostart_no" Content="No" HorizontalAlignment="Left" Margin="161,32,0,0" VerticalAlignment="Top" Checked="autostart_no_Checked"/>
-        <Button x:Name="Block" Content="Block Windows Update" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="152" Click="Block_Click"/>
-        <Button x:Name="unBlock" Content="unBlock Windows Update" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="152" Click="unBlock_Click"/>
-        <Label Content="Refresh time(minutes)" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="131"/>
-        <TextBox x:Name="time" HorizontalAlignment="Left" Height="26" Margin="146,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="78" PreviewTextInput="time_PreviewTextInput" MaxLength="2" PreviewKeyUp="time_PreviewKeyUp"/>
+        Title="Windows Update blocker" Height="184" Width="283" Visibility="Visible" Background="#FF1F1F1F" Foreground="#FF1F1F1F" MinWidth="283" MinHeight="184" ResizeMode="NoResize">
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="3" Opacity="0.35" Color="#FF1F1F1F"/>
+    </Window.Effect>
+    <Grid Background="#FF1F1F1F">
+        <Label Content="Do you want to autostart&#xD;&#xA;this program?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="144" Foreground="#FFF1F1F1"/>
+        <RadioButton x:Name="autostart_yes" Content="Yes" HorizontalAlignment="Left" Margin="190,18,0,0" VerticalAlignment="Top" Checked="autostart_yes_Checked" Width="40" Foreground="#FFF1F1F1"/>
+        <RadioButton x:Name="autostart_no" Content="No" HorizontalAlignment="Left" Margin="190,33,0,0" VerticalAlignment="Top" Checked="autostart_no_Checked" Width="40" Foreground="#FFF1F1F1"/>
+        <Button x:Name="Block" Content="Block Windows Update" HorizontalAlignment="Left" Margin="10,89,0,0" VerticalAlignment="Top" Width="152" Click="Block_Click" Background="#FFBB82FC" Foreground="#FFF1F1F1"/>
+        <Button x:Name="unBlock" Content="unBlock Windows Update" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="152" Click="unBlock_Click" Background="#FFBB82FC" Foreground="#FFF1F1F1"/>
+        <Label Content="Refresh time(minutes)" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="131" Foreground="#FFF1F1F1"/>
+        <TextBox x:Name="time" HorizontalAlignment="Left" Height="26" Margin="166,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" PreviewTextInput="time_PreviewTextInput" MaxLength="2" PreviewKeyUp="time_PreviewKeyUp" Background="#FFBB86FC" Foreground="#FFF1F1F1"/>
 
     </Grid>
 </Window>

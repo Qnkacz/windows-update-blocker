@@ -21,6 +21,7 @@ namespace windows_update_blocker
         ServiceController wu = null;
         private static readonly Regex _regex = new Regex("[^0-9]");
         DispatcherTimer _DP = new DispatcherTimer();
+        System.Windows.Forms.NotifyIcon icon = new System.Windows.Forms.NotifyIcon();
         private void SetStartup(bool mode)
         {
             RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", mode);
@@ -55,13 +56,13 @@ namespace windows_update_blocker
         private void autostart_no_Checked(object sender, RoutedEventArgs e)
         {
             SetStartup(false);
-            MessageBox.Show("This programm will not open on startup", "message", MessageBoxButton.OK);
+            System.Windows.MessageBox.Show("This programm will not open on startup", "message", MessageBoxButton.OK);
         }
 
         private void autostart_yes_Checked(object sender, RoutedEventArgs e)
         {
             SetStartup(true);
-            MessageBox.Show("This programm will open on startup", "message", MessageBoxButton.OK);
+            System.Windows.MessageBox.Show("This programm will open on startup", "message", MessageBoxButton.OK);
         }
 
         private void Block_Click(object sender, RoutedEventArgs e)
@@ -74,14 +75,14 @@ namespace windows_update_blocker
                 _DP.Start();
             }
             time.IsEnabled = false;
-            Button thisb = sender as Button;
+            System.Windows.Controls.Button thisb = sender as System.Windows.Controls.Button;
             thisb.IsEnabled = false;
             unBlock.IsEnabled = true;
         }
 
         private void loopBlock(object sender, EventArgs e)
         {
-            MessageBox.Show("started");
+            System.Windows.MessageBox.Show("started");
             ChangeStatusOfService(false);
         }
 
@@ -90,7 +91,7 @@ namespace windows_update_blocker
             ChangeStatusOfService(true);
             _DP.Stop();
             time.IsEnabled = true;
-            Button thisb = sender as Button;
+            System.Windows.Controls.Button thisb = sender as System.Windows.Controls.Button;
             thisb.IsEnabled = false;
             Block.IsEnabled = true;
         }
@@ -127,7 +128,7 @@ namespace windows_update_blocker
             e.Handled = _regex.IsMatch(e.Text);
         }
 
-        private void time_PreviewKeyUp(object sender, KeyEventArgs e)
+        private void time_PreviewKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if(e.Key==Key.Space)
             {
@@ -143,14 +144,24 @@ namespace windows_update_blocker
         }
         protected override void OnClosing(CancelEventArgs e)
         {
+
+            icon.Icon = new System.Drawing.Icon("icon.ico");
+            icon.Visible = true;
+            icon.MouseClick += new System.Windows.Forms.MouseEventHandler(icon_Click);
+            icon.ShowBalloonTip(500, "I'm in the system tray if you need me"," just click", System.Windows.Forms.ToolTipIcon.Info);
             e.Cancel = true;
             this.Hide();
             base.OnClosing(e);
         }
 
+        private void icon_Click(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            this.Show();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Creator: Bartosz Wąsik \n mail: Wasik.Bartosz@outlook.com \n currently searching for apprenticeships");
+            System.Windows.MessageBox.Show("Creator: Bartosz Wąsik \n mail: Wasik.Bartosz@outlook.com \n currently searching for apprenticeships");
         }
     }
 }

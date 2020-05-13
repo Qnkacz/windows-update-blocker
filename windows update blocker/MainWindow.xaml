@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:windows_update_blocker"
         mc:Ignorable="d"
-        Title="Windows Update blocker" Height="184" Width="283" Visibility="Visible" Background="#FF1F1F1F" Foreground="#FF1F1F1F" MinWidth="283" MinHeight="184" ResizeMode="NoResize">
+        Title="Windows Update blocker" Height="184" Width="283" Visibility="Visible" Background="#FF1F1F1F" Foreground="#FF1F1F1F" MinWidth="283" MinHeight="184" ResizeMode="NoResize" ShowInTaskbar="False">
     <Window.Effect>
         <DropShadowEffect BlurRadius="3" Opacity="0.35" Color="#FF1F1F1F"/>
     </Window.Effect>

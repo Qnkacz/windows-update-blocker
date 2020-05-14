@@ -127,7 +127,6 @@ namespace windows_update_blocker
 
         private void loopBlock(object sender, EventArgs e)
         {
-            System.Windows.MessageBox.Show("started");
             ChangeStatusOfService(false);
         }
 

@@ -76,7 +76,6 @@ namespace windows_update_blocker
                 InitializeComponent();
                 GetServices();
             }
-           
         }
 
         private void GetServices()
@@ -113,7 +112,7 @@ namespace windows_update_blocker
         private void Block_Click(object sender, RoutedEventArgs e)
         {
             ChangeStatusOfService(false);
-            if(time.Text!=null)
+            if(time.Text!="")
             {
                 _DP.Interval = new TimeSpan(0, Int32.Parse(time.Text), 0);
                 _DP.Tick += new EventHandler(loopBlock);
